@@ -96,11 +96,15 @@
     66%     { box-shadow: 0 0 22px rgba(179,107,255,.45); }
   }
 
-  /* Smiling monkey */
-  .tile.monkey { width: 120px; height: 120px; background: radial-gradient(circle, #2a2f5a, #12152e); padding: 6px; }
-  .tile.monkey svg { animation: monkeyBob 2.2s ease-in-out infinite; }
-  .tile.monkey .eye { transform-origin: center; transform-box: fill-box; animation: blink 4s infinite; }
-  @keyframes monkeyBob { 50% { transform: translateY(-3px) rotate(-4deg); } }
+  /* Little green alien (Baby Yoda style) */
+  .tile.yoda { width: 140px; height: 120px; background: radial-gradient(circle, #2a2f5a, #12152e); padding: 4px; }
+  .tile.yoda svg { animation: yodaBob 2.4s ease-in-out infinite; }
+  .tile.yoda .eye { transform-origin: center; transform-box: fill-box; animation: blink 4s infinite; }
+  .tile.yoda .ear-l { transform-origin: 30px 48px; animation: earL 3s ease-in-out infinite; }
+  .tile.yoda .ear-r { transform-origin: 70px 48px; animation: earR 3s ease-in-out infinite; }
+  @keyframes yodaBob { 50% { transform: translateY(-3px) rotate(-3deg); } }
+  @keyframes earL { 50% { transform: rotate(-6deg); } }
+  @keyframes earR { 50% { transform: rotate(6deg); } }
   @keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
 
   /* ---------- Typography ---------- */
@@ -160,7 +164,7 @@
   .row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; min-height: 52px; }
 
   /* Hopping "no" button */
-  #noBtn { font-size: .85rem; padding: 11px 24px; }
+  #noBtn { font-size: .85rem; padding: 11px 24px; white-space: nowrap; }
   #noBtn.dodging {
     position: fixed;
     z-index: 9999;
@@ -243,6 +247,7 @@
 
   /* ---------- Option grid ---------- */
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  .grid.two { grid-template-columns: 1fr 1fr; }
   .opt {
     background: rgba(255,255,255,.05);
     border: 2px solid var(--border);
@@ -255,6 +260,7 @@
     animation: dropIn .5s ease forwards;
   }
   .opt span { display: block; font-size: 1.9rem; margin-bottom: 8px; transition: transform .2s; }
+  .opt small { display: block; margin-top: 6px; font-size: .78rem; font-weight: 400; color: var(--muted); }
   .opt:hover { transform: translateY(-3px); border-color: var(--blue); }
   .opt:hover span { transform: scale(1.15) rotate(-6deg); }
   .opt.selected {
@@ -354,46 +360,60 @@
     <div class="crawl">
       <h3>episode i</h3>
       <h2>a new date</h2>
-      <p>It is a period of nervous energy. A brave engineer, armed with nothing but questionable jokes and a laptop, has built an entire website instead of sending one text.</p>
-      <p>His mission: to ask the lovely <span class="her-name"></span> a single, important question.</p>
-      <p>Somewhere under the Denver sky, the fate of the galaxy now rests on one button....</p>
+      <p>It is a period of nervous energy. A brave engineer, armed with questionable jokes and way too much confidence, has built an entire website instead of sending one simple text.</p>
+      <p>Intelligence reports confirm the lovely <span class="her-name"></span> has a dangerous smile and a habit of making him forget how words work.</p>
+      <p>His mission: ask her one question without embarrassing himself. Early reports suggest it is already too late....</p>
     </div>
   </div>
   <div class="skip-row">
-    <button class="btn saber-blue" onclick="show('ask')">continue</button>
+    <button class="btn saber-blue" onclick="show('ask')">okay, nerd. continue</button>
   </div>
 </section>
 
 <!-- 3. THE QUESTION -->
 <section class="page" id="ask">
   <div class="card" style="--saber: var(--red)">
-    <div class="tile monkey">
-      <svg viewBox="0 0 100 100" width="100%" height="100%" aria-label="smiling monkey">
-        <circle cx="16" cy="48" r="13" fill="#8b5a2b"/>
-        <circle cx="16" cy="48" r="7"  fill="#f2c9a0"/>
-        <circle cx="84" cy="48" r="13" fill="#8b5a2b"/>
-        <circle cx="84" cy="48" r="7"  fill="#f2c9a0"/>
-        <circle cx="50" cy="50" r="34" fill="#8b5a2b"/>
-        <ellipse cx="50" cy="58" rx="25" ry="22" fill="#f2c9a0"/>
-        <ellipse cx="38" cy="42" rx="11" ry="12" fill="#f2c9a0"/>
-        <ellipse cx="62" cy="42" rx="11" ry="12" fill="#f2c9a0"/>
-        <circle class="eye" cx="39" cy="43" r="4" fill="#2b1a0e"/>
-        <circle class="eye" cx="61" cy="43" r="4" fill="#2b1a0e"/>
-        <circle cx="40.5" cy="41.5" r="1.3" fill="#fff"/>
-        <circle cx="62.5" cy="41.5" r="1.3" fill="#fff"/>
-        <ellipse cx="31" cy="58" rx="5" ry="3" fill="#ff8a8a" opacity=".55"/>
-        <ellipse cx="69" cy="58" rx="5" ry="3" fill="#ff8a8a" opacity=".55"/>
-        <ellipse cx="46" cy="55" rx="1.8" ry="1.3" fill="#5a3618"/>
-        <ellipse cx="54" cy="55" rx="1.8" ry="1.3" fill="#5a3618"/>
-        <path d="M36 62 Q50 78 64 62 Q50 70 36 62 Z" fill="#5a1f1f"/>
-        <path d="M42 67 Q50 72 58 67 Q50 69 42 67 Z" fill="#ff7a8a"/>
+    <div class="tile yoda">
+      <svg viewBox="0 0 100 100" width="100%" height="100%" aria-label="little green alien with big ears">
+        <!-- robe -->
+        <path d="M26 100 Q28 76 50 73 Q72 76 74 100 Z" fill="#a9845a"/>
+        <path d="M34 80 Q50 71 66 80 Q50 87 34 80 Z" fill="#d9c49c"/>
+        <!-- ears -->
+        <g class="ear-l">
+          <path d="M31 44 Q10 28 1 32 Q8 47 31 55 Z" fill="#9fc98b"/>
+          <path d="M29 46 Q14 35 6 36 Q12 45 29 52 Z" fill="#e7b3a3"/>
+        </g>
+        <g class="ear-r">
+          <path d="M69 44 Q90 28 99 32 Q92 47 69 55 Z" fill="#9fc98b"/>
+          <path d="M71 46 Q86 35 94 36 Q88 45 71 52 Z" fill="#e7b3a3"/>
+        </g>
+        <!-- head -->
+        <ellipse cx="50" cy="50" rx="23" ry="22" fill="#a9d196"/>
+        <!-- forehead wrinkles & fuzz -->
+        <path d="M40 35 Q50 31 60 35" fill="none" stroke="#8fb87c" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M43 39 Q50 36 57 39" fill="none" stroke="#8fb87c" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M46 29 L47 26 M50 28 L50 25 M54 29 L53 26" stroke="#e9f2e2" stroke-width="1" stroke-linecap="round"/>
+        <!-- eyes -->
+        <ellipse class="eye" cx="40" cy="51" rx="6.5" ry="7" fill="#1b1410"/>
+        <ellipse class="eye" cx="60" cy="51" rx="6.5" ry="7" fill="#1b1410"/>
+        <circle cx="42.3" cy="48.3" r="2.1" fill="#fff"/>
+        <circle cx="62.3" cy="48.3" r="2.1" fill="#fff"/>
+        <circle cx="38.6" cy="54" r=".9" fill="#fff" opacity=".8"/>
+        <circle cx="58.6" cy="54" r=".9" fill="#fff" opacity=".8"/>
+        <!-- blush -->
+        <ellipse cx="31.5" cy="60" rx="4" ry="2.4" fill="#ff9aa5" opacity=".45"/>
+        <ellipse cx="68.5" cy="60" rx="4" ry="2.4" fill="#ff9aa5" opacity=".45"/>
+        <!-- nose & smile -->
+        <ellipse cx="50" cy="60" rx="2" ry="1.2" fill="#86ad74"/>
+        <path d="M45.5 65 Q50 69 54.5 65" fill="none" stroke="#5f7d52" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
     </div>
     <p class="greeting">hey <span class="her-name"></span>,</p>
     <h1>will you go on a date with me?</h1>
+    <p class="sub">choose wisely... there's only one correct answer 😏</p>
     <div class="row" id="askRow">
       <button class="btn saber-red" onclick="show('yes')">yes ❤️</button>
-      <button class="btn saber-purple" id="noBtn">no</button>
+      <button class="btn saber-purple" id="noBtn" type="button">no</button>
     </div>
   </div>
 </section>
@@ -403,8 +423,8 @@
   <div class="card" style="--saber: var(--green)">
     <div class="tile">😳</div>
     <h1>wait you actually said yes??</h1>
-    <p class="sub">I was so ready for you to say no 😅<br>the Force is strong with this one.</p>
-    <button class="btn saber-green" onclick="show('when')">okay okay!</button>
+    <p class="sub">I had a whole backup plan in case you said no. guess I'll never need it 😏<br>the Force is strong with this one.</p>
+    <button class="btn saber-green" onclick="show('when')">calm down, jedi</button>
   </div>
 </section>
 
@@ -416,8 +436,8 @@
       <div class="tile">🕐</div>
     </div>
 
-    <h2>so... when are you free?</h2>
-    <p class="sub">pick a day and time for our mission</p>
+    <h2>so... when is your highness free?</h2>
+    <p class="sub">pick a day and time. I'll clear my very busy schedule of... absolutely nothing.</p>
 
     <div class="field">
       <label for="dateInput">Pick a Day 📆</label>
@@ -431,7 +451,7 @@
       </select>
     </div>
 
-    <button class="btn saber-blue btn-wide" id="whenNext" disabled onclick="show('vibe')">set the date!</button>
+    <button class="btn saber-blue btn-wide" id="whenNext" disabled onclick="show('vibe')">lock it in!</button>
   </div>
 </section>
 
@@ -439,21 +459,21 @@
 <section class="page" id="vibe">
   <div class="card" style="--saber: var(--purple)">
     <h2>what are we feeling?</h2>
-    <p class="sub">choose your mission</p>
+    <p class="sub">choose wisely. I will judge you. (lovingly)</p>
 
     <div class="grid" id="vibeGrid">
-      <button class="opt" data-value="Food"><span>🍽️</span>Food</button>
-      <button class="opt" data-value="Arcade"><span>🕹️</span>Arcade</button>
-      <button class="opt" data-value="Drive"><span>🚗</span>Drive</button>
-      <button class="opt" data-value="Golf"><span>⛳</span>Golf</button>
-      <button class="opt" data-value="Hike"><span>🥾</span>Hike</button>
-      <button class="opt" data-value="Other"><span>💭</span>Other</button>
+      <button class="opt" type="button" data-value="Food"><span>🍽️</span>Food</button>
+      <button class="opt" type="button" data-value="Arcade"><span>🕹️</span>Arcade</button>
+      <button class="opt" type="button" data-value="Drive"><span>🚗</span>Drive</button>
+      <button class="opt" type="button" data-value="Golf"><span>⛳</span>Golf</button>
+      <button class="opt" type="button" data-value="Hike"><span>🥾</span>Hike</button>
+      <button class="opt" type="button" data-value="Other"><span>💭</span>Other</button>
     </div>
 
-    <textarea id="otherText" placeholder="tell me what you're thinking... 😊"></textarea>
+    <textarea id="otherText" placeholder="go on, surprise me... 😏"></textarea>
 
     <button class="btn saber-purple btn-wide" id="vibeNext" disabled onclick="vibeContinue()">continue</button>
-    <button class="link" onclick="show('when')">go back</button>
+    <button class="link" onclick="show('when')">wait, go back</button>
   </div>
 </section>
 
@@ -461,36 +481,55 @@
 <section class="page" id="food">
   <div class="card" style="--saber: var(--red)">
     <h2>what are we eating?</h2>
-    <p class="sub">choose wisely, young padawan</p>
+    <p class="sub">choose wisely, young padawan. no pressure. (some pressure.)</p>
 
     <div class="grid" id="foodGrid">
-      <button class="opt" data-value="American" data-emoji="🍔"><span>🍔</span>American</button>
-      <button class="opt" data-value="Indian" data-emoji="🍛"><span>🍛</span>Indian</button>
-      <button class="opt" data-value="Japanese" data-emoji="🍣"><span>🍣</span>Japanese</button>
-      <button class="opt" data-value="Chinese" data-emoji="🥡"><span>🥡</span>Chinese</button>
-      <button class="opt" data-value="Mexican" data-emoji="🌮"><span>🌮</span>Mexican</button>
-      <button class="opt" data-value="Italian" data-emoji="🍝"><span>🍝</span>Italian</button>
+      <button class="opt" type="button" data-value="American" data-emoji="🍔"><span>🍔</span>American</button>
+      <button class="opt" type="button" data-value="Indian" data-emoji="🍛"><span>🍛</span>Indian</button>
+      <button class="opt" type="button" data-value="Japanese" data-emoji="🍣"><span>🍣</span>Japanese</button>
+      <button class="opt" type="button" data-value="Chinese" data-emoji="🥡"><span>🥡</span>Chinese</button>
+      <button class="opt" type="button" data-value="Mexican" data-emoji="🌮"><span>🌮</span>Mexican</button>
+      <button class="opt" type="button" data-value="Italian" data-emoji="🍝"><span>🍝</span>Italian</button>
     </div>
 
     <p class="picked" id="foodPicked"></p>
 
-    <button class="btn saber-red btn-wide" id="foodNext" disabled onclick="buildGlad(); show('glad')">continue</button>
-    <button class="link" onclick="show('vibe')">go back</button>
+    <button class="btn saber-red btn-wide" id="foodNext" disabled onclick="show('ride')">continue</button>
+    <button class="link" onclick="show('vibe')">wait, go back</button>
   </div>
 </section>
 
-<!-- 8. GLAD YOU DIDN'T SAY NO -->
+<!-- 8. HOW ARE WE GETTING THERE -->
+<section class="page" id="ride">
+  <div class="card" style="--saber: var(--blue)">
+    <div class="tile">🚀</div>
+    <h2>how are we getting there?</h2>
+    <p class="sub">your call, your highness. both options come with excellent company.</p>
+
+    <div class="grid two" id="rideGrid">
+      <button class="opt" type="button" data-value="Pickup"><span>🚗</span>pick me up<small>door-to-door chauffeur service</small></button>
+      <button class="opt" type="button" data-value="Meet"><span>🚙</span>I'll drive<small>meet you there, mysterious woman</small></button>
+    </div>
+
+    <p class="picked" id="ridePicked"></p>
+
+    <button class="btn saber-blue btn-wide" id="rideNext" disabled onclick="buildGlad(); show('glad')">continue</button>
+    <button class="link" onclick="rideBack()">wait, go back</button>
+  </div>
+</section>
+
+<!-- 9. GLAD YOU DIDN'T SAY NO -->
 <section class="page" id="glad">
   <div class="card" style="--saber: var(--gold)">
     <h1>glad you didn't say no.<span class="glad-line" id="gladLine"></span></h1>
     <p class="glad-sub" id="gladWhen"></p>
-    <p class="ps">P.S. normal people text. I made a website. no big deal.</p>
+    <p class="ps">P.S. normal people text. I made a website. let's both pretend that's normal.</p>
     <div class="stars-row">✦ ✧ ✦ ✧ ✦</div>
-    <button class="btn saber-blue btn-wide" onclick="show('fee')">ok i accept</button>
+    <button class="btn saber-blue btn-wide" onclick="show('fee')">ok fine, i accept 🙄</button>
   </div>
 </section>
 
-<!-- 9. ONE SMALL FEE -->
+<!-- 10. ONE SMALL FEE -->
 <section class="page" id="fee">
   <div class="card" style="--saber: var(--green)">
     <div class="tile">💳</div>
@@ -502,24 +541,24 @@
         <span class="fee-name">Date Agreement™</span>
         <span class="fee-price">$0</span>
       </div>
-      <div class="fee-note">one-time fee • fully refundable • absolutely worth it</div>
+      <div class="fee-note">one-time fee • fully refundable • best deal in the galaxy</div>
     </div>
 
     <button class="btn saber-green btn-wide" id="payBtn" onclick="confirmDate()">pay $0 &amp; confirm</button>
-    <button class="link" onclick="show('glad')">go back</button>
+    <button class="link" onclick="show('glad')">having second thoughts? (you're not)</button>
   </div>
 </section>
 
-<!-- 10. CONFIRMED -->
+<!-- 11. CONFIRMED -->
 <section class="page" id="done">
   <div class="card" style="--saber: var(--gold)">
     <div class="tile">✅</div>
     <h1>payment received</h1>
-    <p>Date Agreement™ officially confirmed.</p>
+    <p>Date Agreement™ officially confirmed. No take-backs.</p>
 
     <div class="receipt" id="receipt"></div>
 
-    <p class="sub">confirmation sent to mission control 📡<br>I have a good feeling about this ✨</p>
+    <p class="sub">confirmation sent to mission control (aka my inbox) 📡<br>you're officially stuck with me for one date ✨</p>
     <div class="stars-row">✦ ✧ ✦ ✧ ✦</div>
   </div>
 </section>
@@ -529,7 +568,7 @@
   const HER_NAME = "Anne";                                   // change her name here
   const WEB3FORMS_KEY = "bda4e229-b1af-4745-9e47-479954f8e3ae";
 
-  const state = { date: "", time: "", activity: "", food: "", foodEmoji: "", other: "" };
+  const state = { date: "", time: "", activity: "", food: "", foodEmoji: "", other: "", ride: "" };
 
   // Put her name everywhere it's needed
   document.querySelectorAll(".her-name").forEach(el => el.textContent = HER_NAME);
@@ -582,7 +621,7 @@
 
   /* ---------- Loading → intro → crawl ---------- */
   addEventListener("load", () => {
-    const msgs = ["calculating coordinates...", "charging hyperdrive...", "avoiding asteroids...", "punch it!"];
+    const msgs = ["calculating coordinates...", "hiding my nervousness...", "practicing my smooth lines...", "punch it!"];
     let pct = 0;
     const fill = document.getElementById("fill");
     const label = document.getElementById("loadText");
@@ -607,12 +646,15 @@
     }, 110);
   });
 
-  /* ---------- Hopping "no" button ---------- */
+  /* ---------- Hopping "no" button (with teasing labels) ---------- */
   const noBtn = document.getElementById("noBtn");
   const askRow = document.getElementById("askRow");
   const EDGE = 16;
   const TRIGGER = 100;
   const MIN_JUMP = 180;
+  const noLabels = ["no", "are you sure?", "nice try, padawan 😏", "too slow!", "the force says no to your no", "just click yes", "I'll wait 🙂", "still no?", "okay, rude 😤"];
+  let noCount = 0;
+  let totalNoTries = 0;
 
   function askIsActive() {
     return document.getElementById("ask").classList.contains("active");
@@ -630,6 +672,9 @@
 
   function hop(px, py) {
     detachNoBtn();
+    noCount++;
+    totalNoTries++;
+    noBtn.textContent = noLabels[noCount % noLabels.length];
     const bw = noBtn.offsetWidth, bh = noBtn.offsetHeight;
     const maxX = innerWidth - bw - EDGE;
     const maxY = innerHeight - bh - EDGE;
@@ -650,6 +695,8 @@
     noBtn.classList.remove("dodging");
     noBtn.style.left = "";
     noBtn.style.top = "";
+    noBtn.textContent = "no";
+    noCount = 0;
     askRow.appendChild(noBtn);
   }
 
@@ -702,8 +749,10 @@
     state.time = timeInput.value;
     whenNext.disabled = !(state.date && state.time);
   }
-  dateInput.addEventListener("change", checkWhen);
-  timeInput.addEventListener("change", checkWhen);
+  ["change", "input"].forEach(ev => {
+    dateInput.addEventListener(ev, checkWhen);
+    timeInput.addEventListener(ev, checkWhen);
+  });
 
   function prettyDate(value) {
     if (!value) return "";
@@ -742,8 +791,7 @@
       state.food = "";
       state.foodEmoji = "";
       state.other = state.activity === "Other" ? otherBox.value.trim() : "";
-      buildGlad();
-      show("glad");
+      show("ride");
     }
   }
 
@@ -755,32 +803,50 @@
       state.food = btn.dataset.value;
       state.foodEmoji = btn.dataset.emoji;
       state.other = "";
-      document.getElementById("foodPicked").textContent = "excellent choice, the Force approves 😌";
+      document.getElementById("foodPicked").textContent = "excellent taste. the Force approves 😌";
       document.getElementById("foodNext").disabled = false;
     });
   });
 
+  /* ---------- Ride selection ---------- */
+  document.querySelectorAll("#rideGrid .opt").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("#rideGrid .opt").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      state.ride = btn.dataset.value;
+      document.getElementById("ridePicked").textContent = state.ride === "Pickup"
+        ? "chauffeur mode activated 😎 I'll even clean my car."
+        : "independent queen. respect 👑 I'll save you a seat.";
+      document.getElementById("rideNext").disabled = false;
+    });
+  });
+
+  function rideBack() {
+    show(state.activity === "Food" ? "food" : "vibe");
+  }
+
   /* ---------- Personalized "glad" page ---------- */
   function buildGlad() {
     const lines = {
-      Arcade: "looks like I'm about to lose at the arcade 🕹️",
-      Drive:  "looks like we're going on a drive 🚗 you're the co-pilot",
-      Golf:   "looks like I'm about to get destroyed at golf ⛳",
-      Hike:   "looks like we're hiking 🥾 no rebel base required"
+      Arcade: "looks like an arcade showdown 🕹️ prepare to lose, padawan",
+      Drive:  "looks like a drive 🚗 you're on music duty. don't let the galaxy down",
+      Golf:   "looks like golf ⛳ I'll probably lose, but I'll look good doing it",
+      Hike:   "looks like a hike 🥾 if I get tired, we're calling it a scenic break"
     };
 
     let line;
     if (state.activity === "Food") {
-      line = `looks like we're getting ${state.food} food ${state.foodEmoji}`;
+      line = `looks like we're getting ${state.food} food ${state.foodEmoji} and no, I'm not sharing`;
     } else if (state.activity === "Other") {
-      line = `your idea: "${state.other}" — I'm in 💭`;
+      line = `your idea: "${state.other}" — bold choice. I respect it 💭`;
     } else {
       line = lines[state.activity] || "looks like we've got plans ✨";
     }
 
     document.getElementById("gladLine").textContent = line;
-    document.getElementById("gladWhen").textContent =
-      `be ready by ${state.time} on ${prettyDate(state.date)} — I'm coming to get you 🚗`;
+    document.getElementById("gladWhen").textContent = state.ride === "Pickup"
+      ? `be ready by ${state.time} on ${prettyDate(state.date)}. I'm coming to get you, no excuses 🚀`
+      : `see you at ${state.time} on ${prettyDate(state.date)}. drive safe, I'll be the nervous guy waiting 😅`;
   }
 
   /* ---------- Email notification (Web3Forms) ---------- */
@@ -799,6 +865,8 @@
         Activity: state.activity,
         "Food Choice": state.food || "N/A",
         "Her Idea": state.other || "N/A",
+        "Getting There": state.ride === "Pickup" ? "You pick her up 🚗" : "She drives & meets you there 🚙",
+        "Times She Tried To Click No": String(totalNoTries),
         "Confirmation Fee": "$0",
         "Confirmed At": new Date().toLocaleString()
       })
@@ -818,6 +886,7 @@
     ];
     if (state.food) rows.push(["Food", `${state.food} ${state.foodEmoji}`]);
     if (state.other) rows.push(["Her idea", state.other]);
+    rows.push(["Getting there", state.ride === "Pickup" ? "I pick you up 🚗" : "You drive 🚙"]);
     rows.push(["Amount paid", "$0.00"]);
 
     const box = document.getElementById("receipt");
@@ -835,6 +904,7 @@
 
   async function confirmDate() {
     const btn = document.getElementById("payBtn");
+    if (btn.disabled) return;
     btn.disabled = true;
     btn.textContent = "processing $0...";
 
